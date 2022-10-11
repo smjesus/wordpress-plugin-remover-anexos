@@ -1,9 +1,11 @@
-# wordpress-plugin-remover-anexos
+# Remover Arquivos Anexos de um CPT - (Wordpress plugin)
 ### Plugin para WordPress - Remover Anexos de um Custom Post Type (CPT)
 
 Este plugin foi desenvolvido com a finalidade de remover os arquivos anexados em um CPT.  Estes arquivos são campos do tipo **Mídia** que podem conter uma imagem (JPG, PNG, GIF, etc) ou um outro documento qualquer (PDF, DOC, XML, etc).
 
 Normalmente, quando um post personalizado é removido, os arquivos anexados à ele ficam no servidor, acessíveis na Aba Mídias do **Painel Administrativo do WordPress**.  Assim, este plugin possibilita a remoção desses arquivos juntamente com a deleção do Post propriamente dito.
+
+Para **instalar** este plugin no seu WordPres, baixe todo o código no formato ZIP e proceda normalmente na tela de "Enviar plugin" no seu painel de controle do WordPress.
 
 Após a instalação e ativação do plugin, para usá-lo siga os seguintes passos:
 
