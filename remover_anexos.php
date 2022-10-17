@@ -26,13 +26,14 @@ add_action( 'admin_menu', 'rac_configuracoes_menu' );
 
 
 function code_script_ajax_cpt( $atts ) {
+	$sufix_url_app = get_option( 'url_base_app' ) ;
 	// monta o script que fara a chamada:
-    $output = 
+	$output = 
 '<script>
     function remover_cpt($POST_ID) {
 		if(confirm("Ao confirmar, todos os dados e arquivos vinculados serão apagados permanentemente. Confirma?")){
             jQuery.ajax({
-                url: "/wp-admin/admin-ajax.php",
+                url: "' . $sufix_url_app . 'wp-admin/admin-ajax.php",
                 type: "GET",
                 data: {
                     action:   "remover_anexos",
@@ -52,7 +53,7 @@ function code_script_ajax_cpt( $atts ) {
     }
 </script>';
 	// envia para o Wordpress o codigo:
-    return $output;
+	return $output;
 }
 add_shortcode( 'ajax-code-cpt', 'code_script_ajax_cpt' );
 
