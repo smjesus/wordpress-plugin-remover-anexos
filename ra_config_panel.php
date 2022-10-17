@@ -30,6 +30,28 @@ function cpt_list_fields() {
 	// -.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.
 	add_settings_section('minha_secao', 'Informa&ccedil;&otilde;es Necess&aacute;rias', function( $args ) { echo '<p>Listagem dos MetaFields que s&atilde;o Midia Type.</p>'; }, 'grac_minhas_configuracoes' 	);
 	
+	// Registra o campo de entrada de dados para BASE do Servidor
+	// -.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.
+	register_setting(
+		'grac_minhas_configuracoes',
+		'url_base_app',
+		$url_base,
+	);
+	// Adicona o campo para BASE do Servidor
+	add_settings_field(
+		'url_base_app',
+		'URL BASE do Sistema',
+		function( $args ) {
+			$options = get_option( 'url_base_app' );
+			?>
+			<input type="text" id="<?php echo esc_attr( $args['label_for'] ); ?>" name="url_base_app" value="<?php echo esc_attr( $options ); ?>" size="80">
+			<?php
+		},
+		'grac_minhas_configuracoes',
+		'minha_secao',
+		[ 'label_for' => 'url_base_app_id', 'class'     => 'classe-html-tr',	]
+	);	
+	
 	// Registra o campo de entrada de dados para MIDIA
 	// -.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.
 	register_setting(
@@ -158,7 +180,11 @@ function remover_anexos_html() {
 	<div class="wrap">
 	<p><span style="font-size:22px"><u><strong>Modo de usar</strong></u>:</span></p>
 	<p>&nbsp;</p>
-	<p>1) Configurar os parametros no menu de configura&ccedil;&atilde;o;</p>
+	<p>1) Configurar os parametros no menu <B>Configura&ccedil;&atilde;o</B> -> &quot;Remover Anexos&quot;:</p>
+
+	<p>a) No campo &quot;URL BASE do Sistema&quot; informe &quot;/&quot; para instala&ccedil;&otilde;es do WordPress na raiz do dominio, ou &quot;/nome-dir/&quot; para o nome do diret&oacute;rio onde foi instalado o WordPress, por exemplo:&nbsp; se o teu Wordpress est&aacute; no endere&ccedil;o https://www.meusite.com.br/sistema ent&atilde;o informe &quot;/sistema/ &quot; (somente o diret&oacute;rio com as barras iniciais e finais.&nbsp; Se for um sub-dominio registrado no DNS informe somente &quot;/&quot;.</p>
+		
+	<p>b) Nos demais campos, evite deixa-los vazios, caso nao tenha nenhuma informa&ccedil;&atilde;o a informar, digite &quot;nenhum&quot; (sem as aspas).</p>
 
 	<p>2) No LISTING adicionar um componente <strong>Dynamic Field</strong> e como &quot;Object Field&quot; selecione &quot;Post ID&quot;;&nbsp; ative o &quot;Customize field output&quot; e formate&nbsp;a saida com o seguinte c&oacute;digo:</p>
 
