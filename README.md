@@ -9,7 +9,11 @@ Para **instalar** este plugin no seu WordPres, baixe todo o código no formato Z
 
 Após a instalação e ativação do plugin, para usá-lo siga os seguintes passos:
 
-1) Configurar os parametros no menu de configuração;
+1) Configurar os parametros no menu **Configuração** -> "Remover Anexos":
+
+a) No campo "URL BASE do Sistema" informe "/" para instalações do WordPress na raiz do dominio, ou "/nome-dir/" para o nome do diretório onde foi instalado o WordPress, por exemplo:  se o teu Wordpress está no endereço https://www.meusite.com.br/sistema então informe "/sistema/ " (somente o diretório com as barras iniciais e finais.  Se for um sub-dominio registrado no DNS informe somente "/".
+
+b) Nos demais campos, evite deixa-los vazios, caso nao tenha nenhuma informação a informar, digite "nenhum" (sem as aspas).
 
 2) No LISTING adicionar um componente Dynamic Field e como "Object Field" selecione "Post ID";  ative o "Customize field output" e formate a saida com o seguinte código:
 
