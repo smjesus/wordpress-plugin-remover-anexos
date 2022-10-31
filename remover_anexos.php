@@ -21,6 +21,7 @@ require_once ( plugin_dir_path(__FILE__) . 'ra_anexos_cpt.php' );
 // ACTIONS:
 add_action( 'wp_ajax_remover_anexos', 'remover_anexos_cpt');
 add_action( 'wp_ajax_listar_anexos' , 'listar_anexos_cpt' );
+add_action('jet-form-builder/custom-action/image_changed_on_form', 'validate_image_changed_on_form');
 add_action( 'admin_init', 'cpt_list_fields' );
 add_action( 'admin_menu', 'rac_configuracoes_menu' );
 
