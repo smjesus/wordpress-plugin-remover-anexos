@@ -21,8 +21,9 @@
 defined( 'ABSPATH' ) || exit;
 
 /*
- Funcao que remove os arquivos de midia dos CPT
- Criada por Sergio Murilo  -  Set/2022
+ * Funcao que remove os arquivos de midia dos CPT
+ * Criada por Sergio Murilo  -  Set/2022
+ *
 */
 function remover_anexos_cpt() {
 	// Configura as variaveis locais:
@@ -65,6 +66,38 @@ function remover_anexos_cpt() {
 	} else {
 		wp_delete_post( $cpt_id, true );
 		echo "<BR> deletei o post..." ;	
+	}
+}
+
+/**
+ * Funcao que remove as midias alteradas nos formularios de EDICAO.
+ * 
+ * Ao editar um CPT, caso troque um arquivo de midia (foto ou documento), o antigo sera deletado
+ * da Galeria de Midias por esta funcao.  Sem esse plugin, o arquivo permaneceria na galeria.
+ * Para remover deve-se criar um campo hidden no formulario de edicao, com a lista dos id dos campos
+ * que se deseja validar a troca.
+ */
+function validate_image_changed_on_form ( $post_id ) {
+	$campos        = explode(',', $_POST['campos_tipo_midia'] );
+	$post          = get_post($_POST['post_id']);
+	// varre todos os metafilds especificados no campo hidden:
+	foreach ( $campos as $midia_field ) {
+		if( !($midia_field == "") ) {
+			$campo_midia = $_POST[ $midia_field ] ;
+			if( gettype( $campo_midia ) == "NULL" ) {
+				$metafield_id = get_post_meta( $post->ID, $midia_field, true ); 
+				if( $metafield_id == NULL ) {
+					$metafield_id  = get_post_thumbnail_id( $post ) ;
+					$is_thumb_post = $metafield_id ? true : false ;
+				}
+				if( $is_thumb_post ) {
+					wp_delete_attachment( get_post_thumbnail_id( $post ) , true );
+					delete_post_thumbnail( $post->ID );
+				} else {
+					wp_delete_attachment( $metafield_id, true );
+				}
+			} 
+		}
 	}
 }
 
