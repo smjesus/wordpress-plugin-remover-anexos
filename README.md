@@ -57,6 +57,8 @@ Este plugin, implementa uma função que remove o arquivo da Galeria, caso seja 
 
 2) caso o campo do formulário esteja atualizando a **Imagem de Destaque** do CPT então o ID do campo **deverá** ser definido como **_thumbnail**;
 
+2.1. os campos do tipo **mídia** (imagens ou documentos) no formulário de edição, devem **obrigatóriamente** ter o seu ID com o mesmo nome do identificador (**slurg**) do campo no CPT;
+
 3) na configuração do formulário, na opção "**Post Submit Actions**", adicionar uma ação do tipo "**Call Hook**" e preencher o campo "**Hook Name**" com "**image_changed_on_form**". Veja na imagem abaixo:
 ![Ilustração da configuração do Hook](https://github.com/smjesus/smjesus/blob/main/tela_config_plugin_01.png)
 
