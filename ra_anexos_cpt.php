@@ -80,20 +80,19 @@ function remover_anexos_cpt() {
 function validate_image_changed_on_form ( $post_id ) {
 	$campos        = explode(',', $_POST['campos_tipo_midia'] );
 	$post          = get_post($_POST['post_id']);
-	// varre todos os metafilds especificados no campo hidden:
-	foreach ( $campos as $midia_field ) {
-		if( !($midia_field == "") ) {
-			$campo_midia = $_POST[ $midia_field ] ;
+	
+	if( !($campos[0] == NULL) ) {
+		// varre todos os metafilds especificados no campo hidden:
+		foreach ( $campos as $midia_field ) {
+			$campo_midia   = $_POST[ $midia_field ] ;
+
 			if( gettype( $campo_midia ) == "NULL" ) {
 				$metafield_id = get_post_meta( $post->ID, $midia_field, true ); 
-				if( $metafield_id == NULL ) {
-					$metafield_id  = get_post_thumbnail_id( $post ) ;
-					$is_thumb_post = $metafield_id ? true : false ;
-				}
-				if( $is_thumb_post ) {
+				if( $metafield_id == "" && $midia_field == "_thumbnail" ) {
 					wp_delete_attachment( get_post_thumbnail_id( $post ) , true );
 					delete_post_thumbnail( $post->ID );
-				} else {
+				} 
+				if( $metafield_id !== "" ) {
 					wp_delete_attachment( $metafield_id, true );
 				}
 			} 
