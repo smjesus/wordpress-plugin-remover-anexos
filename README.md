@@ -51,15 +51,18 @@ Após a instalação e ativação do plugin, para usá-lo siga os seguintes pass
 
 Normalmente, quando você atualiza um CPT e troca uma imagem ou documento (campo mídia), o arquivo original não é removido da Galeria de Mídias do Wordpress, resultando em arquivos desnecessários em seu servidor.
 
-Este plugin, implementa uma função que remove o arquivo da Galeria, caso seja alterado ou removido em um Formulário de Edição; para isto, é necessário duas configurações:
+Este plugin, implementa uma função que remove o arquivo da Galeria, caso seja alterado ou removido em um Formulário de Edição; para isto, é necessário três configurações:
 
-1) acrescentar um campo hidden no referido formulário de edição, com o ID "campos_tipo_midia" e inserir nele uma lista com os campos que deseja aplicar a ação de remover os arquivos (uma lista de nomes dos campos separados por vírgula, exemplo: "campo_01, foto_do_card, documento_001");
+1) acrescentar um campo hidden no referido formulário de edição, com o ID "campos_tipo_midia" e inserir nele uma lista com os campos que deseja aplicar a ação de remover os arquivos (uma lista de nomes dos campos separados por vírgula, exemplo: "campo_01, _thumbnail, documento_001");
 
-2) na configuração do formulário, na opção "**Post Submit Actions**", adicionar uma ação do tipo "**Call Hook**" e preencher o campo "**Hook Name**" com "**image_changed_on_form**". Veja na imagem abaixo:
+2) caso o campo do formulário esteja atualizando a **Imagem de Destaque** do CPT então o ID do campo **deverá** ser definido como **_thumbnail**;
+
+3) na configuração do formulário, na opção "**Post Submit Actions**", adicionar uma ação do tipo "**Call Hook**" e preencher o campo "**Hook Name**" com "**image_changed_on_form**". Veja na imagem abaixo:
 ![Ilustração da configuração do Hook](https://github.com/smjesus/smjesus/blob/main/tela_config_plugin_01.png)
 
 
-A inclusão do **campo hidden** deve ser feita somente nos formulários onde haja um campo mídia; caso tenha-se um formulário que não esteja alterando ou não tenha um campo mídia no CPT, ambos os passos não são necessário e o plugin não terá nenhuma ação ao realizar o submit do formulário (bem como se for realizado somente um dos passos também não surtirá nenhum efeito).
+A inclusão do **campo hidden** deve ser feita somente nos formulários onde haja um campo mídia; caso tenha-se um formulário que não esteja alterando ou não tenha um campo mídia no CPT, todos os passos acima não são necessário e o plugin não terá nenhuma ação ao realizar o submit do formulário.
+
 
 ##
 
