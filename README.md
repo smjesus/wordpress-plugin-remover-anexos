@@ -77,6 +77,9 @@ A) O ID do campo de Galerias no formulário deve ser **_galeria-de-fotos** (obse
 
 B) O nome do campo (_galeria-de-fotos) deve constar no campo hidden (**campos_tipo_midia**);
 
+## AVISO
+
+O tratamento de Galerias está limitado à **somente um campo do tipo Galeria no CPT**; se o seu CPT possuir mais de um campo, o segundo não será verificado.
 
 
 ##
