@@ -28,7 +28,7 @@ defined( 'ABSPATH' ) || exit;
 function remover_anexos_cpt() {
 	// Configura as variaveis locais:
 	$cpt_id          = esc_attr( $_GET['_post_id'] );
-    $post            = get_post($cpt_id);	
+        $post            = get_post($cpt_id);	
 	$campos          = explode(',', get_option( 'lista_campos_cpt' ) );
 	$isTrash         = get_option( 'modo_delete_cpt' ) == "TRASH" ? true : false ;
 	$preserve_Galery = get_option( 'is_delete_galerias_cpt' ) ;
@@ -84,16 +84,44 @@ function validate_image_changed_on_form ( $post_id ) {
 	if( !($campos[0] == NULL) ) {
 		// varre todos os metafilds especificados no campo hidden:
 		foreach ( $campos as $midia_field ) {
+			// Obtem o POST para avaliar:
 			$campo_midia   = $_POST[ $midia_field ] ;
-
+			if( $midia_field == "_galeria-de-fotos" ) {
+				// Avaliando campo Galeria:
+				echo "<BR>CAMPO: " . $midia_field ;
+				$fotos_da_galeria    = explode(',', get_post_meta( $post->ID, $midia_field, true ) ); 
+				foreach ( $fotos_da_galeria as $cpt_image_galery ) {	
+					// Verifica cada foto do POST:
+					$foto_alterada = true ;
+					echo "<BR>FOTO: " . $cpt_image_galery ;
+					foreach( $campo_midia as $novo_anexo ) {
+						// Compara com os dados do Formulario:
+						echo "<BR>ANEXO: " . $novo_anexo ; 
+						$pos = strripos($novo_anexo, $cpt_image_galery);
+						if ($pos !== false) {
+							echo "<BR>Anexo PRESENTE!!";
+							$foto_alterada = false ;
+							break;
+						}
+					}
+					if( $foto_alterada ) {
+						echo "<BR>REMOVENDO anexo anterior ($cpt_image_galery)...";
+						wp_delete_attachment( $cpt_image_galery, true );
+					}
+				}
+			}
+			// Se o campo for NULL então houve uma alteracao:
 			if( gettype( $campo_midia ) == "NULL" ) {
+				echo "<BR>COMPO: " . $midia_field ;
 				$metafield_id = get_post_meta( $post->ID, $midia_field, true ); 
 				if( $metafield_id == "" && $midia_field == "_thumbnail" ) {
 					wp_delete_attachment( get_post_thumbnail_id( $post ) , true );
 					delete_post_thumbnail( $post->ID );
+					echo "<BR> Deletou Thumpnail";
 				} 
 				if( $metafield_id !== "" ) {
 					wp_delete_attachment( $metafield_id, true );
+					echo "<BR>Deletou anexo.";
 				}
 			} 
 		}
