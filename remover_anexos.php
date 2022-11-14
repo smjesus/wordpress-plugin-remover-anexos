@@ -3,7 +3,7 @@
 Plugin Name: Remover Anexos
 Plugin URI: 
 Description: Remove as mídias anexadas a um CPT
-Version: 1.0
+Version: 2.0
 Author: Sergio Murilo
 Author URI: https://www.aeroceti.com
 License: GPL v2 or later
