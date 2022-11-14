@@ -1,10 +1,11 @@
-# Remover Arquivos Anexos de um CPT - (Wordpress plugin)
+# Remover Arquivos Anexos de um CPT
+
 
 ### Remover Anexos de um Custom Post Type (CPT)
 
 Este plugin foi desenvolvido com a finalidade de remover os arquivos anexados em um CPT.  Estes arquivos são campos do tipo **Mídia** que podem conter uma imagem (JPG, PNG, GIF, etc) ou um outro documento qualquer (PDF, DOC, XML, etc).
 
-Normalmente, quando um post personalizado é removido, os arquivos anexados à ele ficam no servidor, acessíveis na Aba Mídias do **Painel Administrativo do WordPress**.  Assim, este plugin possibilita a remoção desses arquivos juntamente com a deleção do Post propriamente dito.
+Normalmente, quando um post personalizado é removido, os arquivos anexados à ele ficam no servidor, acessíveis na Aba "Biblioteca de Mídias" do **Painel Administrativo do WordPress**.  Assim, este plugin possibilita a remoção desses arquivos juntamente com a deleção do Post propriamente dito.
 
 Para **instalar** este plugin no seu WordPres, baixe todo o código no formato ZIP e proceda normalmente na tela de "Enviar plugin" no seu painel de controle do WordPress.
 
@@ -12,7 +13,7 @@ Após a instalação e ativação do plugin, para usá-lo siga os seguintes pass
 
 1. Configurar os parametros no menu **Configuração** -> "Remover Anexos":
 
-1.1. No campo "URL BASE do Sistema" informe "/" para instalações do WordPress na raiz do dominio, ou "/nome-dir/" para o nome do diretório onde foi instalado o WordPress, por exemplo:  se o teu Wordpress está no endereço https://www.meusite.com.br/sistema então informe "/sistema/ " (somente o diretório com as barras iniciais e finais.  Se for um sub-dominio registrado no DNS informe somente "/".
+1.1. No campo "URL BASE do Sistema" informe "/" para instalações do WordPress na raiz do dominio, ou "/nome-dir/" para o nome do diretório onde foi instalado o WordPress, por exemplo:  se o teu Wordpress está no endereço https://www.meusite.com.br/sistema então informe "/sistema/ " (somente o diretório com as barras iniciais e finais.  **Se for um sub-dominio registrado no DNS informe somente "/"**.
 
 1.2. Nos demais campos, evite deixa-los vazios, caso nao tenha nenhuma informação a informar, digite "nenhum" (sem as aspas).
 
@@ -64,6 +65,18 @@ Este plugin, implementa uma função que remove o arquivo da Galeria, caso seja 
 
 
 A inclusão do **campo hidden** deve ser feita somente nos formulários onde haja um campo mídia; caso tenha-se um formulário que não esteja alterando ou não tenha um campo mídia no CPT, todos os passos acima não são necessário e o plugin não terá nenhuma ação ao realizar o submit do formulário.
+
+##
+### Remover Anexos ao atualizar um Campo GALERIA de um CPT
+
+Os campos de Galeria de Fotos são igualmente anexos de mídia, com a diferença que um campo armazena um conjunto de anexos. E da mesma forma que um campo mídia, ao remover uma foto de uma Galeria o Wordpress não o remove da Biblioteca de Mídias.
+
+Para que o plugin possa remover uma foto de uma Biblioteca de Mídias, quando a mesma é removida através do **Formulário de Edição** os mesmos procedimentos para a remoção de Anexos explicados no item anterior devem ser observados, com os seguintes itens exclusivos para a Galeria:
+
+A) O ID do campo de Galerias no formulário deve ser **_galeria-de-fotos** (observar o caractere sublinhado no inicio do nome) bem como o ID (slurg) do campo no CPT **deverá** ter o mesmo nome;
+
+B) O nome do campo (_galeria-de-fotos) deve constar no campo hidden (**campos_tipo_midia**);
+
 
 
 ##
