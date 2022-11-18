@@ -84,4 +84,13 @@ O tratamento de Galerias está limitado à **somente um campo do tipo Galeria no
 
 ##
 
+O **Professor Jean Pool** em seu canal no Youtube o [**Croco Brasil**](https://www.youtube.com/@CrocoBrasil), criou alguns vídeos ensinando a utilizar este plugin; o primeiro vídeo é:
+
+[![Watch the video](https://img.youtube.com/vi/KEXli6iuykg/0.jpg)](https://www.youtube.com/watch?v=KEXli6iuykg)
+
+veja os demais vídeos sobre o nosso plugin, e qualquer dúvida estamos às ordens!
+
+
+##
+
 Bom trabalho!
